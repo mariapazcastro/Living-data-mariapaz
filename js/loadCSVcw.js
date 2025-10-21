@@ -67,15 +67,15 @@ function changeData(){
   imageMode(CENTER)
 
   for (let i = 0; i < table.getRowCount(); i ++){
-    if(companyMenu.value() == table.getString(i, 'company')){
-      text(table.getString(i, 'company'), windowWidth/2, 50)
-      text(table.getString(i, 'date'), windowWidth/2, 90)
-      text(table.getString(i, 'location'), windowWidth/2, 130)
-      text(table.getString(i, 'service'), windowWidth/2, 170)
-      text(table.getString(i, 'frequency'), windowWidth/2, 2100)
-      for(let j = 0; j < table.getString(i, 'frequency'); j++){
-        image(imageArray[i], random(windowWidth), random(windowHeight), 30,30)
-      }
+    if(companyMenu.value() == table.getString(i, 'Company')){
+      text(table.getString(i, 'Company'), windowWidth/2, 50)
+      text(table.getString(i, 'Date'), windowWidth/2, 90)
+      // text(table.getString(i, 'location'), windowWidth/2, 130)
+      // text(table.getString(i, 'service'), windowWidth/2, 170)
+      // text(table.getString(i, 'frequency'), windowWidth/2, 2100)
+      // for(let j = 0; j < table.getString(i, 'frequency'); j++){
+      //   image(imageArray[i], random(windowWidth), random(windowHeight), 30,30)
+      // }
     }
   }
 
