@@ -28,15 +28,17 @@ let selectedSong
 function preload(){
 	table = loadTable('js/DataFinalProject.csv', 'csv', 'header');
     superJoyFont = loadFont('SuperJoyful.ttf')
-    modemSound = loadSound('Media/Tiroteo-Remix.mp3')
+    //modemSound = loadSound('Media/Tiroteo-Remix.mp3')
 }
 
-function loadSongArray(){
-  for(let i = 0; i < table.getRowCount(); i++){
-    songArray[i] = loadSong('Song/' + table.getString(i, 'Song'))
-  }
 
-}
+
+//function loadSongArray(){
+  //for(let i = 0; i < table.getRowCount(); i++){
+    //songArray[i] = loadSong('Song/' + table.getString(i, 'Song'))
+  //}
+
+//}
 
 
 function setup(){
@@ -119,10 +121,18 @@ function draw(){
     if(movieMenu.value() == table.getString(i, 'Movies')){
 
       text(table.getString(i, 'Song'), windowWidth/2, 50)
-      text(table.getString(i, 'Artist'), windowWidth/2, 90)
-      text(table.getString(i, 'Genre'), windowWidth/2, 130)
-      // text(table.getString(i, 'service'), windowWidth/2, 170)
-      // text(table.getString(i, 'frequency'), windowWidth/2, 2100)
+      text(table.getString(i, 'Poster'), windowWidth/2, 90)
+      text(table.getString(i, 'Song'), windowWidth/2, 130)
+      text(table.getString(i, 'Image'), windowWidth/2, 170)
+      text(table.getString(i, 'Mp3'), windowWidth/2, 210)
+      text(table.getString(i, 'Artist'), windowWidth/2, 250)
+      text(table.getString(i, 'Genre'), windowWidth/2, 290)
+      text(table.getString(i, 'Song Rec 1'), windowWidth/2, 330)
+       text(table.getString(i, 'Rec1mp3'), windowWidth/2, 370)
+      text(table.getString(i, 'Song Rec 2'), windowWidth/2, 410)
+      text(table.getString(i, 'Rec2mp3'), windowWidth/2, 450)
+      text(table.getString(i, 'Song Rec 3'), windowWidth/2, 490)
+      text(table.getString(i, 'Rec3mp3'), windowWidth/2, 530)
       // for(let j = 0; j < table.getString(i, 'frequency'); j++){
       //   image(imageArray[i], random(windowWidth), random(windowHeight), 30,30)
       // }
