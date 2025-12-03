@@ -30,6 +30,13 @@ let selectedSong
 
 let randColor
 
+let startScreenBool
+let choosingScreenBool = false
+
+let startButton
+
+
+
 function preload(){
 	table = loadTable('js/DataFinalProject.csv', 'csv', 'header', loadContentArrays);
     superJoyFont = loadFont('SuperJoyful.ttf')
@@ -69,10 +76,16 @@ function setup(){
 
 randColor = color(random(225), random(225), random(225))
 
+  startButton = createButton('Start')
+  startButton.mousePressed(choosingScreen)
+  startButton.position(600,615)
+  //startButton.style('background-color', 'rgb('+random(225), random(225), random(225)+'')
 
-audioButton = createButton('Play Song')
+
+  audioButton = createButton('Play Song')
   audioButton.mousePressed(playAudio)
   audioButton.position(525,615)
+  audioButton.hide()
 
   modemAmplitude = new p5.Amplitude()
  
@@ -102,6 +115,7 @@ movieMenu.option('select movie')
    movieMenu.option(movies)
   
   }
+  movieMenu.hide()
 
    print(posterArray)
   print(mp3Array)
@@ -109,6 +123,27 @@ movieMenu.option('select movie')
   print(rec1songArray)
   print(rec2songArray)
   print(rec3songArray)
+
+
+
+   background(0)
+  imageMode(CENTER)
+  textFont(superJoyFont)
+  fill(randColor)
+  textSize(100)
+  textAlign(CENTER)
+  text("Music", windowWidth/2, windowHeight/3)
+
+  textAlign(CENTER)
+  textSize(50)
+  //textWrap(WORD)
+  text('In almost every movie, there is one specific song that becomes iconic thanks to the movie', windowWidth/2 - 400, windowHeight/2, 800)
+   
+   // if(startButton.isPressed){
+   //   StartScreen = false
+   //  choosingScreenBool = true
+ //}
+
 
   //submitButton.mousePressed(changeData)
 
@@ -125,28 +160,26 @@ function playAudio(){
     movieSong.pause()
     audioButton.html('Play Song')
   }
+
 } 
 
 
 function startScreen(){
-   background(0)
-  imageMode(CENTER)
-   textFont(superJoyFont)
-  fill(randColor)
-  textSize(50)
-  textAlign(CENTER)
-  text("Music", windowWidth/2, windowHeight/2)
-
+  
 }
 
-function draw(){
-  background(0)
-  imageMode(CENTER)
+function choosingScreen(){
+  choosingScreenBool = true
+  startButton.hide()
+  movieMenu.show()
+  audioButton.show()
+   background(0)
+   imageMode(CENTER)
    textFont(superJoyFont)
-  fill(randColor)
-  textSize(50)
-  textAlign(LEFT)
-  text("Music", windowWidth/2, windowHeight/2)
+   fill(randColor)
+   textSize(40)
+   textAlign(LEFT)
+
   //modemSound.setVolume(modemVolSlider.value())
   //modemSound.rate(modemRateSlider.value())
 
@@ -165,18 +198,19 @@ function draw(){
       //200, 300, 300, 500
       //windowWidth/2, windowHeight/2, 300, 500
 
-      text(table.getString(i, 'Song'), 800, 90)
+     
+      text(table.getString(i, 'Song'), windowWidth/2, 140, 700)
       // text(table.getString(i, 'Poster'), windowWidth/2, 130)
       // text(table.getString(i, 'Image'), windowWidth/2, 170)
-      text(table.getString(i, 'Mp3'), 800, 210)
-      text(table.getString(i, 'Artist'), windowWidth/2, 250)
-      text(table.getString(i, 'Genre'), windowWidth/2, 290)
-      text(table.getString(i, 'Song Rec 1'), windowWidth/2, 330)
-       text(table.getString(i, 'Rec1mp3'), windowWidth/2, 370)
-      text(table.getString(i, 'Song Rec 2'), windowWidth/2, 410, 500)
-      text(table.getString(i, 'Rec2mp3'), windowWidth/2, 450)
-      text(table.getString(i, 'Song Rec 3'), windowWidth/2, 490)
-      text(table.getString(i, 'Rec3mp3'), windowWidth/2, 530)
+      //text(table.getString(i, 'Mp3'), windowWidth/2, 210)
+      text(table.getString(i, 'Artist'), windowWidth/2, 200, 700)
+      text(table.getString(i, 'Genre'), windowWidth/2, 280, 700)
+      text(table.getString(i, 'Song Rec 1'), windowWidth/2, 380, 700)
+      //text(table.getString(i, 'Rec1mp3'), windowWidth/2, 540, 800)
+      text(table.getString(i, 'Song Rec 2'), windowWidth/2, 440, 700)
+      // text(table.getString(i, 'Rec2mp3'), windowWidth/2, 450)
+      text(table.getString(i, 'Song Rec 3'), windowWidth/2, 500, 700)
+      // text(table.getString(i, 'Rec3mp3'), windowWidth/2, 530)
      
       
       movieSong = mp3Array[i]
@@ -185,5 +219,11 @@ function draw(){
   }
 
 
+}
+
+function draw(){
+  if (choosingScreenBool == true){
+    choosingScreen()
+  }
 }
 
