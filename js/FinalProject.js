@@ -6,11 +6,14 @@ let superJoyFont
 
 
 let movieSong
+let rec1Song
+let rec2Song
+let rec3Song
 let canvas
 
 let audioButton
 
-let videoButton
+
 
 let modemVolSlider
 let modemRateSlider
@@ -34,6 +37,9 @@ let startScreenBool
 let choosingScreenBool = false
 
 let startButton
+let rec1Button
+let rec2Button
+let rec3Button
 
 
 
@@ -78,7 +84,7 @@ randColor = color(random(225), random(225), random(225))
 
   startButton = createButton('Start')
   startButton.mousePressed(choosingScreen)
-  startButton.position(600,615)
+  startButton.position(windowWidth/2, 700)
   //startButton.style('background-color', 'rgb('+random(225), random(225), random(225)+'')
 
 
@@ -86,6 +92,21 @@ randColor = color(random(225), random(225), random(225))
   audioButton.mousePressed(playAudio)
   audioButton.position(525,615)
   audioButton.hide()
+
+  rec1Button = createButton('Rec1 Song')
+  rec1Button.mousePressed(playrec1Audio)
+  rec1Button.position(1350,360)
+  rec1Button.hide()
+
+  rec2Button = createButton('Rec2 Song')
+  rec2Button.mousePressed(playrec2Audio)
+  rec2Button.position(1350,420)
+  rec2Button.hide()
+
+  rec3Button = createButton('Rec3 Song')
+  rec3Button.mousePressed(playrec3Audio)
+  rec3Button.position(1350,500)
+  rec3Button.hide()
 
   modemAmplitude = new p5.Amplitude()
  
@@ -163,6 +184,45 @@ function playAudio(){
 
 } 
 
+function playrec1Audio(){
+
+  if(!rec1Song.isPlaying()){
+    rec1Song.loop()
+    rec1Button.html('Pause Rec1')
+    
+  } else{
+    rec1Song.pause()
+    rec1Button.html('Play Rec1')
+  }
+
+} 
+
+function playrec2Audio(){
+
+  if(!rec2Song.isPlaying()){
+    rec2Song.loop()
+    rec2Button.html('Pause Rec2')
+    
+  } else{
+    rec2Song.pause()
+    rec2Button.html('Play Rec2')
+  }
+
+} 
+
+function playrec3Audio(){
+
+  if(!rec3Song.isPlaying()){
+    rec3Song.loop()
+    rec3Button.html('Pause Rec3')
+    
+  } else{
+    rec3Song.pause()
+    rec3Button.html('Play Rec3')
+  }
+
+} 
+
 
 function startScreen(){
   
@@ -173,6 +233,9 @@ function choosingScreen(){
   startButton.hide()
   movieMenu.show()
   audioButton.show()
+  rec1Button.show()
+  rec2Button.show()
+  rec3Button.show()
    background(0)
    imageMode(CENTER)
    textFont(superJoyFont)
@@ -199,22 +262,31 @@ function choosingScreen(){
       //windowWidth/2, windowHeight/2, 300, 500
 
      
-      text(table.getString(i, 'Song'), windowWidth/2, 140, 700)
+      text(table.getString(i, 'Song'), windowWidth/2, 120, 700)
       // text(table.getString(i, 'Poster'), windowWidth/2, 130)
       // text(table.getString(i, 'Image'), windowWidth/2, 170)
       //text(table.getString(i, 'Mp3'), windowWidth/2, 210)
-      text(table.getString(i, 'Artist'), windowWidth/2, 200, 700)
-      text(table.getString(i, 'Genre'), windowWidth/2, 280, 700)
+      textSize(40)
+      text(table.getString(i, 'Artist'), windowWidth/2, 190, 700)
+      textSize(35)
+      text(table.getString(i, 'Genre'), windowWidth/2, 260, 700)
+       textSize(40)
       text(table.getString(i, 'Song Rec 1'), windowWidth/2, 380, 700)
       //text(table.getString(i, 'Rec1mp3'), windowWidth/2, 540, 800)
-      text(table.getString(i, 'Song Rec 2'), windowWidth/2, 440, 700)
+      text(table.getString(i, 'Song Rec 2'), windowWidth/2, 430, 640)
       // text(table.getString(i, 'Rec2mp3'), windowWidth/2, 450)
-      text(table.getString(i, 'Song Rec 3'), windowWidth/2, 500, 700)
+      text(table.getString(i, 'Song Rec 3'), windowWidth/2, 520, 700)
       // text(table.getString(i, 'Rec3mp3'), windowWidth/2, 530)
      
       
       movieSong = mp3Array[i]
       //selectedSong = songArray[i]
+
+      rec1Song = rec1songArray[i]
+
+      rec2Song = rec2songArray[i]
+
+      rec3Song = rec3songArray[i]
     }
   }
 
